@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <!-- "Abduwali" and "Moallim" are intentional proper names -->
-  <title> Abduwali Moallim | IT Security & PCA </title>
+  <title> Abduwali Moallim | IT Security </title>
   <meta name="description" content="Bilingual IT security and PCA administrator with 5+ years of healthcare technology, AI integration, and client support experience.">
   <meta name="keywords" content="IT Security, PCA, Healthcare Technology, AI Integration, Microsoft Azure, Google Cloud, Personal Care Assistance, Abduwali Moallim, Somali, Arabic, English, Sign Language">
   <link rel="stylesheet" href="style.css" />
