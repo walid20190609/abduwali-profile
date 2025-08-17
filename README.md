@@ -35,7 +35,15 @@
         <li>Email: <a href="mailto:moallimowen@gmail.com">moallimowen@gmail.com</a></li>
         <li>Phone: <a href="tel:+19522204304">(952)-220-4304</a></li>
         <li>Location: Minneapolis, MN, USA</li>
-        <li>LinkedIn: <a href="#" aria-label="LinkedIn profile (add your link)">Add your LinkedIn</a></li>
+       <li>
+  LinkedIn: 
+  <a href="https://www.linkedin.com/in/abduwali-moallim-08bb5094/" 
+     target="_blank" 
+     rel="noopener noreferrer" 
+     aria-label="LinkedIn Profile">
+     Connect with me on LinkedIn
+  </a>
+</li>
         <li>GitHub: <a href="https://github.com/walid20190609" aria-label="GitHub profile">walid20190609</a></li>
       </ul>
     </section>
