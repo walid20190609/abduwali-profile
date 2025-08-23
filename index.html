@@ -76,7 +76,7 @@
       </ul>
 
       <!-- Simple contact form (Formspree placeholder) -->
-  <form class="contact-form" action="https://formspree.io/f/xldlqqqz" method="POST" aria-label="Contact form">
+      <form id="contact-form" class="contact-form" action="https://formspree.io/f/xldlqqqz" method="POST" aria-label="Contact form">
         <label for="name">Name</label>
         <input id="name" name="name" type="text" required>
 
@@ -86,7 +86,9 @@
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="5" required></textarea>
 
-        <!-- replace the action URL with your Formspree endpoint -->
+        <div class="form-feedback" role="status" aria-live="polite" hidden></div>
+
+        <!-- replace the action URL with your Formspree endpoint if needed -->
         <button type="submit">Send message</button>
       </form>
     </section>
@@ -108,5 +110,46 @@
   <footer>
     <p>&copy; 2025 Abduwali Moallim. All rights reserved.</p>
   </footer>
+
+  <script>
+  // Client-side submit handler to show friendly feedback and optional redirect
+  (function(){
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+    const feedback = form.querySelector('.form-feedback');
+    function show(msg, ok){
+      feedback.hidden = false;
+      feedback.textContent = msg;
+      feedback.style.color = ok ? 'green' : 'crimson';
+    }
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      feedback.hidden = true;
+      const data = new FormData(form);
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: data,
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          const json = await res.json().catch(() => null);
+          // If Formspree returns a redirect path, follow it; otherwise show message
+          if (json && json.next) {
+            window.location.href = json.next;
+            return;
+          }
+          show('Thanks — your message was sent. I will reply soon.', true);
+          form.reset();
+        } else {
+          show('Sorry — there was a problem sending your message. Please try again.', false);
+        }
+      } catch (err) {
+        show('Network error — please try again later.', false);
+        console.error('Form submit error', err);
+      }
+    });
+  })();
+  </script>
 </body>
 </html>
