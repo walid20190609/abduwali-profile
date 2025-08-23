@@ -45,8 +45,12 @@
 
   <main class="container" role="main">
     <header aria-label="Profile header">
-  <img src="assets/profile.svg" alt="Profile photo of Abduwali Moallim" class="hero" width="160" height="160">
-  <h1>Abduwali Moallim</h1>
+      <picture class="hero-wrap" aria-hidden="false">
+        <!-- Replace these srcset URLs with optimized, committed images (e.g. assets/profile-400.webp, assets/profile-800.webp) -->
+        <source srcset="https://picsum.photos/800/800?random=1 800w, https://picsum.photos/400/400?random=1 400w" type="image/jpeg">
+        <img src="https://picsum.photos/400/400?random=1" alt="Profile photo of Abduwali Moallim" class="hero" width="160" height="160">
+      </picture>
+      <h1>Abduwali Moallim</h1>
   <p>IT Security Specialist | PCA Administrator | Bilingual Tech Advocate</p>
     </header>
 
@@ -85,6 +89,10 @@
 
         <label for="message">Message</label>
         <textarea id="message" name="message" rows="5" required></textarea>
+
+        <!-- Honeypot anti-spam field: leave this in the form but hidden from users. Bots often fill it. If filled, submission is rejected client-side. -->
+        <label class="hp-visually-hidden" for="website">Website</label>
+        <input id="website" name="website" type="text" class="honeypot" tabindex="-1" autocomplete="off">
 
         <div class="form-feedback" role="status" aria-live="polite" hidden></div>
 
@@ -125,6 +133,12 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       feedback.hidden = true;
+      // Honeypot check: if hidden 'website' field is filled, bail out
+      const hp = document.getElementById('website');
+      if (hp && hp.value.trim() !== '') {
+        show('Spam detected — submission blocked.', false);
+        return;
+      }
       const data = new FormData(form);
       try {
         const res = await fetch(form.action, {
