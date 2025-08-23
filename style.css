@@ -130,6 +130,11 @@ footer {
   margin-top: 0.5rem;
 }
 
+.form-feedback {
+  padding: 0.5rem 0.25rem;
+  font-size: 0.95rem;
+}
+
 button {
   background: var(--primary-color);
   color: #fff;
